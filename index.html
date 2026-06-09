@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Kawaii Word Find 🌸</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>✨ KAWAII FIND ✨</h1>
+        <div class="subtitle">Find the cute hidden words! 🧸🍬🧋</div>
+
+        <div id="grid"></div>
+
+        <div class="word-box">
+            <ul class="word-list" id="wordList"></ul>
+        </div>
+
+        <button class="btn" onclick="initGame()">New Game ✨</button>
+    </div>
+
+    <div class="win-message" id="winMessage">
+        <h2>🎉 YAY! 🎉</h2>
+        <p style="font-size: 1.2rem; font-weight: bold;">You found them all! You're amazing! 💕</p>
+        <button class="btn" onclick="closeWinMessage()">Play Again 💫</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
