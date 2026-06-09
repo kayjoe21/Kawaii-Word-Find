@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght=500;700&display=swap');
+
+:root {
+    --bg-color: #FFF0F5; /* Lavender Blush */
+    --panel-color: #ffffff;
+    --text-color: #6C5B7B;
+    --accent-pink: #FFB7B2;
+    --accent-peach: #FFDAC1;
+    --accent-mint: #E2F0CB;
+    --accent-blue: #B5EAD7;
+    --accent-purple: #C7CEEA;
+    --selection-color: rgba(255, 183, 178, 0.6);
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Quicksand', sans-serif;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    background-image: radial-gradient(var(--accent-peach) 10%, transparent 10%),
+                      radial-gradient(var(--accent-purple) 10%, transparent 10%);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+}
+
+.container {
+    background: var(--panel-color);
+    padding: 25px;
+    border-radius: 30px;
+    box-shadow: 0 10px 0px rgba(108, 91, 123, 0.1), 0 20px 25px rgba(0,0,0,0.05);
+    border: 4px solid var(--accent-purple);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+h1 {
+    font-family: 'Fredoka One', cursive;
+    color: #FF9AA2;
+    font-size: 2.2rem;
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 0px var(--text-color);
+    -webkit-text-stroke: 1px var(--text-color);
+}
+
+.subtitle {
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #957dad;
+}
+
+/* The Grid */
+#grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 6px;
+    background: var(--bg-color);
+    padding: 12px;
+    border-radius: 20px;
+    border: 3px dashed var(--accent-pink);
+    margin: 0 auto 25px auto;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    touch-action: none; /* Prevents scrolling while playing on mobile */
+}
+
+.cell {
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+    box-shadow: 0 4px 0px rgba(0,0,0,0.05);
+}
+
+.cell:hover {
+    transform: scale(1.05);
+    background-color: var(--accent-peach);
+}
+
+/* Selection States */
+.cell.highlighted {
+    background-color: var(--accent-pink);
+    color: white;
+}
+
+.cell.found {
+    background-color: var(--accent-blue);
+    color: #4a7c6c;
+    transform: scale(0.95);
+    box-shadow: none;
+}
+
+/* Word List */
+.word-box {
+    background: #FFF9F9;
+    border: 2px solid var(--accent-peach);
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.word-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.word-item {
+    font-weight: 700;
+    padding: 6px 14px;
+    background: white;
+    border-radius: 50px;
+    border: 2px solid var(--accent-purple);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.word-item.found {
+    text-decoration: line-through;
+    background: var(--accent-purple);
+    color: white;
+    opacity: 0.6;
+    transform: scale(0.9);
+}
+
+/* Buttons */
+.btn {
+    font-family: 'Fredoka One', cursive;
+    background-color: var(--accent-pink);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 0px #e0928c;
+    transition: all 0.1s ease;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    background-color: #ffaba3;
+}
+
+.btn:active {
+    box-shadow: 0 2px 0px #e0928c;
+    transform: translateY(4px);
+}
+
+/* Win Overlay */
+.win-message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    border: 5px solid var(--accent-pink);
+    box-shadow: 0 0 50px rgba(0,0,0,0.2);
+    z-index: 10;
+    text-align: center;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.win-message h2 {
+    font-family: 'Fredoka One', cursive;
+    color: #FF9AA2;
+    font-size: 2.5rem;
+    margin-top: 0;
+}
